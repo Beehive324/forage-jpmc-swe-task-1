@@ -40,11 +40,15 @@ def getDataPoint(quote):
 
 
 def getRatio(price_a, price_b):
-    stock_ratio = int(price_a/price_b)
-    return stock_ratio
+    if (price_b == 0):
+        return int(price_a/price_b)
+    elif(price_b > 0):
+        stock_ratio = int(price_a/price_b)
+        return stock_ratio
 
 
 # Main
+prices = {}
 if __name__ == "__main__":
     # Query the price once every N seconds.
     for _ in iter(range(N)):
@@ -53,6 +57,7 @@ if __name__ == "__main__":
         """ ----------- Update to get the ratio --------------- """
         for quote in quotes:
             stock, bid_price, ask_price, price = getDataPoint(quote)
+            prices[stock] = price
             print("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
 
-        print("Ratio %s" % getRatio(bid_price, ask_price))
+        print("Ratio %s" % getRatio(prices["ABC"], prices["DEF"]))
