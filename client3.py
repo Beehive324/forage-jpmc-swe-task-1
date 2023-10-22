@@ -42,9 +42,7 @@ def getDataPoint(quote):
 def getRatio(price_a, price_b):
     if (price_b == 0):
         return int(price_a/price_b)
-    elif(price_b > 0):
-        stock_ratio = int(price_a/price_b)
-        return stock_ratio
+  
 
 
 # Main
